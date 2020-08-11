@@ -6,5 +6,5 @@
 
 .gradle
 .idea
-src/
->>>>>>> fd7f38bbc9a20d821518540d4d0c7eeae542a1b7
+
+application-oauth.properties
