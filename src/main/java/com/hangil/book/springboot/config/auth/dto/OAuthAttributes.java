@@ -28,6 +28,14 @@ private String nameAttributeKey;
         this.picture=picture;
     }
 
+
+    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
+        if("naver".equals(registrationId)) {
+            return ofNaver("id", attributes);
+        }
+
+        return ofGoogle(userNameAttributeName, attributes);
+    }
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
 
@@ -39,13 +47,7 @@ private String nameAttributeKey;
                 .nameAttributeKey(userNameAttributeName)
                 .build();
     }
-    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
-        if("naver".equals(registrationId)) {
-            return ofNaver("id", attributes);
-        }
 
-        return ofGoogle(userNameAttributeName, attributes);
-    }
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
